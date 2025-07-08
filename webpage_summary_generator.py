@@ -84,7 +84,7 @@ summarize("https://edwarddonner.com")
 def display_summary(url):
     summary = summarize(url)
     # the below line only works with jupyter notebook. in order to see it save file as .ipynb	
-    display(Markdown(summary))
+    print(summary)
 display_summary("https://cnn.com")
 
 

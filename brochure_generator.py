@@ -126,7 +126,7 @@ def create_brochure(company_name, url):
           ],
     )
     result = response.choices[0].message.content
-    display(Markdown(result))
+    print(result)
 
 create_brochure("HuggingFace", "https://huggingface.co")
 
@@ -141,10 +141,11 @@ def stream_brochure(company_name, url):
     )
     
     response = ""
-    display_handle = display(Markdown(""), display_id=True)
+    print("\n--- Brochure Output ---\n")
     for chunk in stream:
         response += chunk.choices[0].delta.content or ''
-        response = response.replace("```","").replace("markdown", "")
-        display_handle.update(Markdown(response))
-
+        clean_content = response.replace("```","").replace("markdown", "")
+        print(clean_content, end='', flush=True)
+    print("\n\n--- End of Brochure ---")
+    
 stream_brochure("HuggingFace", "https://huggingface.co")
